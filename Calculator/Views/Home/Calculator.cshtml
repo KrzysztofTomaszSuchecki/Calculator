@@ -1,0 +1,43 @@
+﻿@using CalculatorDataLayer.Model
+@model CalculatorDataLayer.Model.Operation
+
+@{
+    ViewData["Title"] = "Calculator";
+    List<OperaionsTypes> operaionsTypes = ViewData["OperaionsTypes"] as List<OperaionsTypes>;
+
+}
+
+<form method="get" enctype="multipart/form-data" asp-controller="Home" asp-action="Calc">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <div class="row">
+            <label class="col-lg-2"></label>
+            <select asp-for="Id" id="Id" name="Id" formnovalidate="formnovalidate" class="form-control col-lg-2" asp-items="@(new SelectList(operaionsTypes, "Id", "Name"))">
+                <option selected disabled>Wybierz operację</option>
+            </select>
+            <span asp-validation-for="OperaionTypeId" class="text-danger"></span>
+
+        </div>
+        <div class="row">
+            <label asp-for="No1" class="col-lg-2"></label>
+            <input type="number" formnovalidate="formnovalidate" asp-for="No1" class="form-control col-lg-2" />
+            <span asp-validation-for="No1" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <label asp-for="No2" class="col-lg-2"></label>
+            <input type="number" asp-for="No2" class="form-control col-lg-2" />
+            <span asp-validation-for="No2" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <label asp-for="Result" class="col-lg-2"></label>
+            <input type="number" disabled="disabled" class="form-control col-lg-2" asp-for="Result" />
+        </div>
+        <div class="row">
+            <input type="submit" value="Licz" />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
