@@ -1,10 +1,11 @@
-IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'CalculatorDb')
+﻿IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'CalculatorDb')
   BEGIN
     CREATE DATABASE [CalculatorDb]
   END
 GO
 	USE [CalculatorDb]
 GO
+
 
 
 /****** Object:  Table [dbo].[OperaionsTypes]    Script Date: 5/29/2021 1:40:49 PM ******/
@@ -50,3 +51,14 @@ ALTER TABLE [dbo].[Operation]  WITH CHECK ADD FOREIGN KEY([OperaionTypeId])
 REFERENCES [dbo].[OperaionsTypes] ([Id])
 GO
 
+INSERT INTO [dbo].[OperaionsTypes]([Name])
+     VALUES ('Dodawanie')
+GO
+INSERT INTO [dbo].[OperaionsTypes]([Name])
+     VALUES ('Odejmowanie')
+GO
+INSERT INTO [dbo].[OperaionsTypes]([Name])
+     VALUES ('Mnożenie')
+GO
+INSERT INTO [dbo].[OperaionsTypes]([Name])
+     VALUES ('Dzielenie')
